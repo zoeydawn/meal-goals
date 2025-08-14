@@ -24,6 +24,7 @@ const MAPPING = {
   plus: 'add',
   calendar: 'calendar-month',
   'star.fill': 'star',
+  'person.fill': 'person',
 } as IconMapping
 
 /**
