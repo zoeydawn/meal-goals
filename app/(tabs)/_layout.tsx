@@ -11,12 +11,13 @@ import { useAddFoodModalStore } from '@/store/useAddFoodModalStore'
 
 export default function TabLayout() {
   const colorScheme = useColorScheme()
-  const { setShowModal } = useAddFoodModalStore()
+  const { setShowModal, showModal } = useAddFoodModalStore()
+  const activeColor = Colors[colorScheme ?? 'light'].tint
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: activeColor,
         headerShown: false,
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
@@ -52,7 +53,11 @@ export default function TabLayout() {
         options={{
           title: 'Add food',
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="plus" color={color} />
+            <IconSymbol
+              size={28}
+              name="plus"
+              color={showModal ? activeColor : color}
+            />
           ),
           tabBarButton: (props) => (
             <Pressable {...props} onPress={() => setShowModal(true)} />
