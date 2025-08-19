@@ -11,6 +11,7 @@ import { StatusBar } from 'expo-status-bar'
 import 'react-native-reanimated'
 
 import { useColorScheme } from '@/hooks/useColorScheme'
+import AddFoodModal from '@/components/AddFoodModal'
 
 export default function RootLayout() {
   const colorScheme = useColorScheme()
@@ -31,6 +32,7 @@ export default function RootLayout() {
           <Stack.Screen name="+not-found" />
         </Stack>
         <StatusBar style="auto" />
+        <AddFoodModal />
       </ThemeProvider>
     </GluestackUIProvider>
   )
