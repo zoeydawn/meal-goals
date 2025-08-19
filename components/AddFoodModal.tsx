@@ -29,7 +29,7 @@ export default function AddFoodModal() {
       <ModalContent>
         <ModalHeader>
           <Heading size="md" className="text-typography-950">
-            Invite your team
+            Add Food
           </Heading>
           <ModalCloseButton>
             <Icon
@@ -61,7 +61,7 @@ export default function AddFoodModal() {
               setShowModal(false)
             }}
           >
-            <ButtonText>Explore</ButtonText>
+            <ButtonText>Done</ButtonText>
           </Button>
         </ModalFooter>
       </ModalContent>
