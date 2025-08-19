@@ -60,7 +60,13 @@ export default function TabLayout() {
             />
           ),
           tabBarButton: (props) => (
-            <Pressable {...props} onPress={() => setShowModal(true)} />
+            <Pressable
+              style={props.style}
+              accessibilityState={props.accessibilityState}
+              onPress={() => setShowModal(true)}
+            >
+              {props.children}
+            </Pressable>
           ),
         }}
       />
