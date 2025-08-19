@@ -1,19 +1,20 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-type ThemeMode = 'light' | 'dark'
+export type ThemeMode = 'light' | 'dark' | 'system'
 
-type AppState = {
+interface ThemeState {
   themeMode: ThemeMode
   setThemeMode: (mode: ThemeMode) => void
 }
 
-export const useAppStore = create<AppState>()(
+export const useThemeStore = create<ThemeState>()(
   persist(
     (set) => ({
-      themeMode: 'light',
+      // start with system theme
+      themeMode: 'system',
       setThemeMode: (mode) => set({ themeMode: mode }),
     }),
-    { name: 'simple-food-diary-app' }, // AsyncStorage key
+    { name: 'theme-preference' }, // storage key
   ),
 )
