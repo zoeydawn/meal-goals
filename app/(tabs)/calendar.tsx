@@ -1,15 +1,8 @@
-import { ThemedText } from '@/components/ThemedText'
 import React from 'react'
-import { View } from 'react-native'
+import CalendarView from '@/components/CalendarView'
 
 const Page = () => {
-  return (
-    <View>
-      <ThemedText>Page</ThemedText>
-
-      <ThemedText>Calendar</ThemedText>
-    </View>
-  )
+  return <CalendarView />
 }
 
 export default Page
