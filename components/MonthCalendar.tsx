@@ -37,7 +37,7 @@ export default function MonthCalendar(props: MonthCalendarProps) {
 
         return (
           <Pressable onPress={() => props.setViewedDay(date.dateString)}>
-            <View className="items-center justify-center p-1">
+            <View className="items-center p-1 h-20">
               <Text
                 className={
                   state === 'disabled' ? 'text-gray-400' : 'text-black'
