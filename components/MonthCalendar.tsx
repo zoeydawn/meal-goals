@@ -1,5 +1,5 @@
 import { Calendar } from 'react-native-calendars'
-import { Text, View } from 'react-native'
+import { Pressable, Text, View } from 'react-native'
 
 type EmojiDays = Record<string, string> // YYYY-MM-DD -> emoji string
 
@@ -20,23 +20,34 @@ const emojiDays: EmojiDays = {
   '2025-08-23': '🍩',
 }
 
-export default function CalendarView() {
+type MonthCalendarProps = {
+  setViewedDay: (view: string) => void
+}
+
+export default function MonthCalendar(props: MonthCalendarProps) {
   return (
     <Calendar
+      // onDayPress={(day) => {
+      //   props.setViewedDay(day)
+      // }}
       dayComponent={({ date, state }) => {
         if (!date) return null
 
         const emojis = emojiDays[date.dateString]
 
         return (
-          <View className="items-center justify-center p-1">
-            <Text
-              className={state === 'disabled' ? 'text-gray-400' : 'text-black'}
-            >
-              {date.day}
-            </Text>
-            {emojis && <Text>{emojis}</Text>}
-          </View>
+          <Pressable onPress={() => props.setViewedDay(date.dateString)}>
+            <View className="items-center justify-center p-1">
+              <Text
+                className={
+                  state === 'disabled' ? 'text-gray-400' : 'text-black'
+                }
+              >
+                {date.day}
+              </Text>
+              {emojis && <Text>{emojis}</Text>}
+            </View>
+          </Pressable>
         )
       }}
     />
