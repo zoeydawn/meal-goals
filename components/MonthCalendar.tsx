@@ -1,5 +1,6 @@
 import { Calendar } from 'react-native-calendars'
 import { Pressable, Text, View } from 'react-native'
+import { useColorScheme } from '@/hooks/useColorScheme'
 
 type EmojiDays = Record<string, string> // YYYY-MM-DD -> emoji string
 
@@ -25,11 +26,18 @@ type MonthCalendarProps = {
 }
 
 export default function MonthCalendar(props: MonthCalendarProps) {
+  const colorScheme = useColorScheme()
+  const isDark = colorScheme === 'dark'
+
   return (
     <Calendar
       // onDayPress={(day) => {
       //   props.setViewedDay(day)
       // }}
+      key={`month-calendar-${colorScheme}`}
+      theme={{
+        calendarBackground: isDark ? '#000' : '#fff', // dark/light background
+      }}
       dayComponent={({ date, state }) => {
         if (!date) return null
 
@@ -40,7 +48,9 @@ export default function MonthCalendar(props: MonthCalendarProps) {
             <View className="items-center p-1 h-20">
               <Text
                 className={
-                  state === 'disabled' ? 'text-gray-400' : 'text-black'
+                  state === 'disabled'
+                    ? 'text-gray-400'
+                    : 'text-black dark:text-white'
                 }
               >
                 {date.day}
