@@ -9,12 +9,10 @@ import {
   ModalBody,
   ModalFooter,
 } from '@/components/ui/modal'
-import { Text } from '@/components/ui/text'
 import { Icon, CloseIcon } from '@/components/ui/icon'
 import React from 'react'
 import { useAddFoodModalStore } from '@/store/useAddFoodModalStore'
-import { foodEmojis } from '@/constants/emojis'
-import { Pressable } from 'react-native'
+import EmojiList from './EmojiList'
 
 export default function AddFoodModal() {
   const { showModal, setShowModal } = useAddFoodModalStore()
@@ -25,7 +23,7 @@ export default function AddFoodModal() {
       onClose={() => {
         setShowModal(false)
       }}
-      size="md"
+      size="lg"
     >
       <ModalBackdrop />
       <ModalContent>
@@ -42,11 +40,7 @@ export default function AddFoodModal() {
           </ModalCloseButton>
         </ModalHeader>
         <ModalBody>
-          <Text>
-            {foodEmojis.map((emoji) => (
-              <Pressable key={emoji.name}>{emoji.emoji}</Pressable>
-            ))}
-          </Text>
+          <EmojiList />
         </ModalBody>
         <ModalFooter>
           <Button

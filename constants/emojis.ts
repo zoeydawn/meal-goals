@@ -57,7 +57,7 @@ export const foodEmojis: FoodEmoji[] = [
   { name: 'chicken or poultry', emoji: '🍗', categories: ['meat', 'protein'] },
   { name: 'red meat', emoji: '🥩', categories: ['meat', 'protein'] },
   { name: 'bacon', emoji: '🥓', categories: ['meat', 'protein'] },
-  { name: 'shrimp', emoji: '🍤', categories: ['seafood', 'protein'] },
+  { name: 'cooked shrimp', emoji: '🍤', categories: ['seafood', 'protein'] },
   { name: 'fish', emoji: '🐟', categories: ['seafood', 'protein'] },
   // { name: 'cooked fish', emoji: '🍣', categories: ['seafood', 'protein'] },
   { name: 'sushi', emoji: '🍣', categories: ['seafood'] },
