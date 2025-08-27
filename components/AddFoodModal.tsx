@@ -13,6 +13,8 @@ import { Text } from '@/components/ui/text'
 import { Icon, CloseIcon } from '@/components/ui/icon'
 import React from 'react'
 import { useAddFoodModalStore } from '@/store/useAddFoodModalStore'
+import { foodEmojis } from '@/constants/emojis'
+import { Pressable } from 'react-native'
 
 export default function AddFoodModal() {
   const { showModal, setShowModal } = useAddFoodModalStore()
@@ -40,10 +42,10 @@ export default function AddFoodModal() {
           </ModalCloseButton>
         </ModalHeader>
         <ModalBody>
-          <Text size="sm" className="text-typography-500">
-            Elevate user interactions with our versatile modals. Seamlessly
-            integrate notifications, forms, and media displays. Make an impact
-            effortlessly.
+          <Text>
+            {foodEmojis.map((emoji) => (
+              <Pressable key={emoji.name}>{emoji.emoji}</Pressable>
+            ))}
           </Text>
         </ModalBody>
         <ModalFooter>
