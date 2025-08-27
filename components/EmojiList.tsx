@@ -13,7 +13,7 @@ const EmojiList = () => {
     <View className="flex-row flex-wrap gap-2">
       {foodEmojis.map((emoji) => (
         <Pressable onPress={() => handlePress(emoji)} key={emoji.name}>
-          <Text>{emoji.emoji}</Text>
+          <Text className="text-2xl">{emoji.emoji}</Text>
         </Pressable>
       ))}
     </View>
