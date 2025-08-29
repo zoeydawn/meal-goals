@@ -6,6 +6,7 @@ import { Button, ButtonText } from '@/components/ui/button'
 import DayCalendar from '@/components/DayCalendar'
 import { DateObject } from '@/types/calendarTypes'
 import { getToday } from '@/constants/calendar'
+import { useMealDiaryItems } from '@/hooks/useMealDiaryItems'
 
 const Page = () => {
   const [calendarView, setCalendarView] = React.useState<
@@ -13,6 +14,10 @@ const Page = () => {
   >('month')
   const today = getToday()
   const [viewedDay, setViewedDay] = React.useState<DateObject>(today)
+
+  const mealItems = useMealDiaryItems()
+  console.log('mealItems', mealItems)
+
   const selectDay = (day: DateObject) => {
     setCalendarView('day')
     setViewedDay(day)
@@ -20,7 +25,9 @@ const Page = () => {
 
   return (
     <View className="flex-1 justify-center">
-      {calendarView === 'month' && <MonthCalendar setViewedDay={selectDay} />}
+      {calendarView === 'month' && (
+        <MonthCalendar mealItems={mealItems} setViewedDay={selectDay} />
+      )}
       {calendarView === 'week' && <WeekCalendar />}
       {calendarView === 'day' && <DayCalendar selectedDay={viewedDay} />}
 

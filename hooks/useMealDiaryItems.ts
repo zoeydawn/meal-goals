@@ -1,18 +1,16 @@
 import { useMealDiaryStore } from '@/store/useMealDiaryStore'
-import { MealItem } from '@/types/FoodEmoji'
-
-type MealItemsByDate = Record<number, MealItem[]>
+import { MealItemsByDate } from '@/types/calendarTypes'
 
 export function useMealDiaryItems(): MealItemsByDate {
   const { mealItems } = useMealDiaryStore()
   const mealItemsByDate = mealItems.reduce((acc, item) => {
-    const { timestamp } = item.dateAdded
+    const { dateString } = item.dateAdded
 
-    if (!acc[timestamp]) {
-      acc[timestamp] = []
+    if (!acc[dateString]) {
+      acc[dateString] = []
     }
 
-    acc[timestamp].push(item)
+    acc[dateString].push(item)
     return acc
   }, {} as MealItemsByDate)
 
