@@ -1,3 +1,5 @@
+import { DateData } from 'react-native-calendars'
+
 type EmojiCategory =
   | 'fruits_vegetables'
   | 'grains_starches'
@@ -17,3 +19,7 @@ export type FoodEmoji = {
   name: string
   categories: EmojiCategory[]
 }
+
+export type MealItem = {
+  dateAdded: DateData
+} & FoodEmoji

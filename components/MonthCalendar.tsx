@@ -2,6 +2,7 @@ import { Calendar } from 'react-native-calendars'
 import { Pressable, Text, View } from 'react-native'
 import { useColorScheme } from '@/hooks/useColorScheme'
 import { DateObject } from '@/types/calendarTypes'
+import { useMealDiaryStore } from '@/store/useMealDiaryStore'
 
 type EmojiDays = Record<string, string> // YYYY-MM-DD -> emoji string
 
@@ -27,8 +28,11 @@ type MonthCalendarProps = {
 }
 
 export default function MonthCalendar(props: MonthCalendarProps) {
+  const { mealItems } = useMealDiaryStore()
   const colorScheme = useColorScheme()
   const isDark = colorScheme === 'dark'
+
+  console.log('mealItems', mealItems)
 
   return (
     <Calendar

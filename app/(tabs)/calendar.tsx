@@ -5,23 +5,15 @@ import { View } from 'react-native'
 import { Button, ButtonText } from '@/components/ui/button'
 import DayCalendar from '@/components/DayCalendar'
 import { DateObject } from '@/types/calendarTypes'
-
-const today: DateObject = {
-  dateString: '2025-08-25',
-  day: 25,
-  month: 8,
-  timestamp: 1756080000000,
-  year: 2025,
-}
+import { getToday } from '@/constants/calendar'
 
 const Page = () => {
   const [calendarView, setCalendarView] = React.useState<
     'month' | 'week' | 'day'
   >('month')
+  const today = getToday()
   const [viewedDay, setViewedDay] = React.useState<DateObject>(today)
   const selectDay = (day: DateObject) => {
-    // console.log('viewed day', day)
-    // console.log('type', typeof day)
     setCalendarView('day')
     setViewedDay(day)
   }

@@ -16,14 +16,17 @@ import EmojiList from './EmojiList'
 import { FoodEmoji } from '@/types/FoodEmoji'
 import DetailedEmojiView from './DetailedEmojiView'
 import { useMealDiaryStore } from '@/store/useMealDiaryStore'
+import { getToday } from '@/constants/calendar'
 
 export default function AddFoodModal() {
   const { showModal, setShowModal } = useAddFoodModalStore()
   const { addItem } = useMealDiaryStore()
   const [selectedEmoji, setSelectedEmoji] = React.useState<FoodEmoji>()
+  // TODO: integrate date into state (this is a placeholder)
+  const selectedDate = getToday()
 
   const handleClose = () => {
-    selectedEmoji && addItem(selectedEmoji)
+    selectedEmoji && addItem({ dateAdded: selectedDate, ...selectedEmoji })
 
     // setSelectedEmoji(undefined)
     setShowModal(false)

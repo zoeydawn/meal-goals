@@ -1,28 +1,18 @@
-import { FoodEmoji } from '@/types/FoodEmoji'
-// import { DateData } from 'react-native-calendars'
+import { MealItem } from '@/types/FoodEmoji'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-// interface MealDiaryItemsByDate {
-//   date: DateData
-//   meals: FoodEmoji[]
-// }
-
 interface MealDiaryState {
-  mealItems: FoodEmoji[]
-  addItem: (item: FoodEmoji) => void
-  // itemsByDate: MealDiaryItemsByDate[]
+  mealItems: MealItem[]
+  addItem: (item: MealItem) => void
 }
 
 export const useMealDiaryStore = create<MealDiaryState>()(
   persist(
     (set) => ({
       mealItems: [],
-      addItem: (item: FoodEmoji) =>
+      addItem: (item: MealItem) =>
         set((state) => ({ mealItems: [...state.mealItems, item] })),
-      // itemsByDate: (state) => state.mealItems,
-      // setItemsByDate: (itemsByDate: MealDiaryItemsByDate[]) =>
-      //   set({ itemsByDate }),
     }),
     { name: 'meal-diary' }, // storage key
   ),
