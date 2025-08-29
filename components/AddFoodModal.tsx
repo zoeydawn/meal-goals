@@ -13,9 +13,18 @@ import { Icon, CloseIcon } from '@/components/ui/icon'
 import React from 'react'
 import { useAddFoodModalStore } from '@/store/useAddFoodModalStore'
 import EmojiList from './EmojiList'
+import { FoodEmoji } from '@/types/FoodEmoji'
+import DetailedEmojiView from './DetailedEmojiView'
 
 export default function AddFoodModal() {
   const { showModal, setShowModal } = useAddFoodModalStore()
+  const [selectedEmoji, setSelectedEmoji] = React.useState<FoodEmoji>()
+
+  const handleClose = () => {
+    // TODO: add item to meal diary
+    setSelectedEmoji(undefined)
+    setShowModal(false)
+  }
 
   return (
     <Modal
@@ -40,7 +49,8 @@ export default function AddFoodModal() {
           </ModalCloseButton>
         </ModalHeader>
         <ModalBody>
-          <EmojiList />
+          {!selectedEmoji && <EmojiList setEmoji={setSelectedEmoji} />}
+          {!!selectedEmoji && <DetailedEmojiView emoji={selectedEmoji} />}
         </ModalBody>
         <ModalFooter>
           <Button
@@ -50,15 +60,13 @@ export default function AddFoodModal() {
               setShowModal(false)
             }}
           >
-            <ButtonText>Cancel</ButtonText>
+            <ButtonText>Close</ButtonText>
           </Button>
-          <Button
-            onPress={() => {
-              setShowModal(false)
-            }}
-          >
-            <ButtonText>Done</ButtonText>
-          </Button>
+          {!!selectedEmoji && (
+            <Button onPress={handleClose}>
+              <ButtonText>Add {selectedEmoji?.emoji}</ButtonText>
+            </Button>
+          )}
         </ModalFooter>
       </ModalContent>
     </Modal>

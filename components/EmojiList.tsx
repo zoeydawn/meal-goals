@@ -4,9 +4,15 @@ import { Pressable } from './ui/pressable'
 import { View } from 'react-native'
 import { FoodEmoji } from '@/types/FoodEmoji'
 
-const EmojiList = () => {
+interface EmojiListProps {
+  setEmoji: (emoji: FoodEmoji) => void
+}
+
+const EmojiList = (props: EmojiListProps) => {
   const handlePress = (emoji: FoodEmoji) => {
     console.log('pressed:', emoji.emoji)
+
+    props.setEmoji(emoji)
   }
 
   return (
