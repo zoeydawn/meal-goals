@@ -1,4 +1,4 @@
-import { Button, ButtonText } from '@/components/ui/button'
+import { Button, ButtonIcon, ButtonText } from '@/components/ui/button'
 import { Heading } from '@/components/ui/heading'
 import {
   Modal,
@@ -9,31 +9,36 @@ import {
   ModalBody,
   ModalFooter,
 } from '@/components/ui/modal'
-import { Icon, CloseIcon } from '@/components/ui/icon'
+import { Icon, CloseIcon, ChevronLeftIcon } from '@/components/ui/icon'
 import React from 'react'
 import { useAddFoodModalStore } from '@/store/useAddFoodModalStore'
 import EmojiList from './EmojiList'
 import { FoodEmoji } from '@/types/FoodEmoji'
 import DetailedEmojiView from './DetailedEmojiView'
+import { useMealDiaryStore } from '@/store/useMealDiaryStore'
 
 export default function AddFoodModal() {
   const { showModal, setShowModal } = useAddFoodModalStore()
+  const { addItem } = useMealDiaryStore()
   const [selectedEmoji, setSelectedEmoji] = React.useState<FoodEmoji>()
 
   const handleClose = () => {
-    // TODO: add item to meal diary
-    setSelectedEmoji(undefined)
+    selectedEmoji && addItem(selectedEmoji)
+
+    // setSelectedEmoji(undefined)
     setShowModal(false)
   }
 
+  const handleX = () => {
+    if (selectedEmoji) {
+      setSelectedEmoji(undefined)
+    } else {
+      setShowModal(false)
+    }
+  }
+
   return (
-    <Modal
-      isOpen={showModal}
-      onClose={() => {
-        setShowModal(false)
-      }}
-      size="lg"
-    >
+    <Modal isOpen={showModal} onClose={handleX} size="lg">
       <ModalBackdrop />
       <ModalContent>
         <ModalHeader>
@@ -53,15 +58,30 @@ export default function AddFoodModal() {
           {!!selectedEmoji && <DetailedEmojiView emoji={selectedEmoji} />}
         </ModalBody>
         <ModalFooter>
-          <Button
-            variant="outline"
-            action="secondary"
-            onPress={() => {
-              setShowModal(false)
-            }}
-          >
-            <ButtonText>Close</ButtonText>
-          </Button>
+          {!selectedEmoji && (
+            <Button
+              variant="outline"
+              action="secondary"
+              onPress={() => {
+                setShowModal(false)
+              }}
+            >
+              <ButtonText>Close</ButtonText>
+            </Button>
+          )}
+
+          {!!selectedEmoji && (
+            <Button
+              variant="outline"
+              action="secondary"
+              onPress={() => {
+                setSelectedEmoji(undefined)
+              }}
+            >
+              <ButtonIcon as={ChevronLeftIcon} />
+              <ButtonText>Back</ButtonText>
+            </Button>
+          )}
           {!!selectedEmoji && (
             <Button onPress={handleClose}>
               <ButtonText>Add {selectedEmoji?.emoji}</ButtonText>
