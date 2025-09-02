@@ -18,7 +18,6 @@ export default function DayView({
 }: DayViewProps) {
   if (!date) return null
 
-  // const todayEmojis = props.mealItems[date.dateString] || []
   const emojis = mealItems.map((item) => item.emoji).join('')
   const dateIsToday = isToday(date)
 
