@@ -1,9 +1,9 @@
 import React from 'react'
-import MonthCalendar from '@/components/MonthCalendar'
-import WeekCalendar from '@/components/WeekCalendar'
+import MonthCalendar from '@/components/calendar/MonthCalendar'
+import WeekCalendar from '@/components/calendar/WeekCalendar'
 import { View } from 'react-native'
 import { Button, ButtonText } from '@/components/ui/button'
-import DayCalendar from '@/components/DayCalendar'
+import DayCalendar from '@/components/calendar/DayCalendar'
 import { DateObject } from '@/types/calendarTypes'
 import { getToday } from '@/constants/calendar'
 import { useMealDiaryItems } from '@/hooks/useMealDiaryItems'
@@ -43,7 +43,7 @@ const Page = () => {
         >
           <ButtonText>Month</ButtonText>
         </Button>
-        <Button
+        {/*<Button
           size="md"
           variant="solid"
           action="primary"
@@ -51,7 +51,7 @@ const Page = () => {
           onPress={() => setCalendarView('week')}
         >
           <ButtonText>Week</ButtonText>
-        </Button>
+        </Button>*/}
         <Button
           size="md"
           variant="solid"

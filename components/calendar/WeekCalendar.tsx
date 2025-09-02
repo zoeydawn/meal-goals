@@ -2,7 +2,7 @@ import { WeekCalendar as RNWeekCalendar } from 'react-native-calendars'
 import { View } from 'react-native'
 import { DateObject, MealItemsByDate } from '@/types/calendarTypes'
 import { useColorScheme } from '@/hooks/useColorScheme'
-import DayView from './calendar/DayView'
+import DayView from './DayView'
 
 // type EmojiDays = Record<string, string>
 //

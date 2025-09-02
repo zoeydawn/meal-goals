@@ -1,7 +1,7 @@
 import { Calendar } from 'react-native-calendars'
 import { useColorScheme } from '@/hooks/useColorScheme'
 import { DateObject, MealItemsByDate } from '@/types/calendarTypes'
-import DayView from './calendar/DayView'
+import DayView from './DayView'
 
 // type EmojiDays = Record<string, string> // YYYY-MM-DD -> emoji string
 
