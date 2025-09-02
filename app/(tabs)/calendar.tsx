@@ -34,15 +34,17 @@ const Page = () => {
       {calendarView === 'day' && <DayCalendar selectedDay={viewedDay} />}
 
       <View className="flex flex-row justify-between p-4">
-        <Button
-          size="md"
-          variant="solid"
-          action="primary"
-          disabled={calendarView === 'month'}
-          onPress={() => setCalendarView('month')}
-        >
-          <ButtonText>Month</ButtonText>
-        </Button>
+        {calendarView === 'day' && (
+          <Button
+            size="md"
+            variant="solid"
+            action="primary"
+            // disabled={calendarView === 'month'}
+            onPress={() => setCalendarView('month')}
+          >
+            <ButtonText>Back</ButtonText>
+          </Button>
+        )}
         {/*<Button
           size="md"
           variant="solid"
@@ -51,7 +53,7 @@ const Page = () => {
           onPress={() => setCalendarView('week')}
         >
           <ButtonText>Week</ButtonText>
-        </Button>*/}
+        </Button>
         <Button
           size="md"
           variant="solid"
@@ -60,7 +62,7 @@ const Page = () => {
           onPress={() => setCalendarView('day')}
         >
           <ButtonText>Day</ButtonText>
-        </Button>
+        </Button>*/}
       </View>
     </View>
   )
