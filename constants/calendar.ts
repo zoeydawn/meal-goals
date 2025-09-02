@@ -37,4 +37,44 @@ export const isSameDay = (a: DateObject, b: DateObject): boolean => {
   return a.year === b.year && a.month === b.month && a.day === b.day
 }
 
+/**
+ * Check if a DateObject is today.
+ */
+export const isToday = (date: DateObject): boolean => {
+  return isSameDay(date, getDateObject())
+}
+
+/**
+ * Check if a DateObject is yesterday.
+ */
+export const isYesterday = (date: DateObject): boolean => {
+  return isSameDay(date, getRelativeDateObject(-1))
+}
+
+/**
+ * Check if a DateObject is tomorrow.
+ */
+export const isTomorrow = (date: DateObject): boolean => {
+  return isSameDay(date, getRelativeDateObject(1))
+}
+
 export const getToday = () => getDateObject()
+
+export const formatDateObject = (
+  date: DateObject,
+  options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long' },
+): string => {
+  if (isToday(date)) {
+    return 'Today'
+  }
+  if (isTomorrow(date)) {
+    return 'Tomorrow'
+  }
+  if (isYesterday(date)) {
+    return 'Yesterday'
+  }
+
+  return new Intl.DateTimeFormat('en-US', options).format(
+    new Date(date.timestamp),
+  )
+}

@@ -3,7 +3,7 @@ import { Text } from './ui/text'
 import { FoodEmoji } from '@/types/FoodEmoji'
 import { ChevronLeftIcon, ChevronRightIcon, Icon } from './ui/icon'
 import { DateObject } from '@/types/calendarTypes'
-import { getRelativeDateObject } from '@/constants/calendar'
+import { formatDateObject, getRelativeDateObject } from '@/constants/calendar'
 
 interface DetailedEmojiViewProps {
   emoji: FoodEmoji
@@ -27,7 +27,7 @@ const DetailedEmojiView = (props: DetailedEmojiViewProps) => {
         >
           <Icon as={ChevronLeftIcon} />
         </Pressable>
-        <Text>{props.selectedDate.dateString}</Text>
+        <Text>{formatDateObject(props.selectedDate)}</Text>
         <Pressable
           onPress={() =>
             props.setSelectedDate(getRelativeDateObject(1, props.selectedDate))
