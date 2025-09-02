@@ -27,7 +27,8 @@ export default function AddFoodModal() {
   const handleClose = () => {
     selectedEmoji && addItem({ dateAdded: selectedDate, ...selectedEmoji })
 
-    // setSelectedEmoji(undefined)
+    setSelectedEmoji(undefined)
+    setSelectedDate(getToday())
     setShowModal(false)
   }
 
