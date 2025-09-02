@@ -1,30 +1,38 @@
 import { Pressable, View } from 'react-native'
 import { Text } from './ui/text'
 import { FoodEmoji } from '@/types/FoodEmoji'
-import { useState } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon, Icon } from './ui/icon'
+import { DateObject } from '@/types/calendarTypes'
+import { getRelativeDateObject } from '@/constants/calendar'
 
 interface DetailedEmojiViewProps {
   emoji: FoodEmoji
+  selectedDate: DateObject
+  setSelectedDate: (date: DateObject) => void
 }
 
 const DetailedEmojiView = (props: DetailedEmojiViewProps) => {
-  const [quantity, setQuantity] = useState(1)
-
   return (
     <>
       <View className="flex-row items-center">
         <Text className="text-5xl">{props.emoji.emoji}</Text>
         <Text className="capitalize pl-2">{props.emoji.name}</Text>
-        <Text> x {quantity}</Text>
       </View>
 
       <View className="flex-row justify-between p-8">
-        <Pressable onPress={() => setQuantity(quantity - 1)}>
+        <Pressable
+          onPress={() =>
+            props.setSelectedDate(getRelativeDateObject(-1, props.selectedDate))
+          }
+        >
           <Icon as={ChevronLeftIcon} />
         </Pressable>
-        <Text>{quantity}</Text>
-        <Pressable onPress={() => setQuantity(quantity + 1)}>
+        <Text>{props.selectedDate.dateString}</Text>
+        <Pressable
+          onPress={() =>
+            props.setSelectedDate(getRelativeDateObject(1, props.selectedDate))
+          }
+        >
           <Icon as={ChevronRightIcon} />
         </Pressable>
       </View>

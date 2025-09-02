@@ -22,8 +22,7 @@ export default function AddFoodModal() {
   const { showModal, setShowModal } = useAddFoodModalStore()
   const { addItem } = useMealDiaryStore()
   const [selectedEmoji, setSelectedEmoji] = React.useState<FoodEmoji>()
-  // TODO: integrate date into state (this is a placeholder)
-  const selectedDate = getToday()
+  const [selectedDate, setSelectedDate] = React.useState(getToday())
 
   const handleClose = () => {
     selectedEmoji && addItem({ dateAdded: selectedDate, ...selectedEmoji })
@@ -58,7 +57,13 @@ export default function AddFoodModal() {
         </ModalHeader>
         <ModalBody>
           {!selectedEmoji && <EmojiList setEmoji={setSelectedEmoji} />}
-          {!!selectedEmoji && <DetailedEmojiView emoji={selectedEmoji} />}
+          {!!selectedEmoji && (
+            <DetailedEmojiView
+              emoji={selectedEmoji}
+              setSelectedDate={setSelectedDate}
+              selectedDate={selectedDate}
+            />
+          )}
         </ModalBody>
         <ModalFooter>
           {!selectedEmoji && (
