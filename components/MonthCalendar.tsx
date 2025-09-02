@@ -2,6 +2,7 @@ import { Calendar } from 'react-native-calendars'
 import { Pressable, Text, View } from 'react-native'
 import { useColorScheme } from '@/hooks/useColorScheme'
 import { DateObject, MealItemsByDate } from '@/types/calendarTypes'
+import { isToday } from '@/constants/calendar'
 
 // type EmojiDays = Record<string, string> // YYYY-MM-DD -> emoji string
 
@@ -42,19 +43,30 @@ export default function MonthCalendar(props: MonthCalendarProps) {
 
         const todayEmojis = props.mealItems[date.dateString] || []
         const emojis = todayEmojis.map((item) => item.emoji).join('')
+        const dateIsToday = isToday(date)
 
         return (
           <Pressable onPress={() => props.setViewedDay(date)}>
             <View className="items-center p-1 h-20">
-              <Text
+              <View
                 className={
-                  state === 'disabled'
-                    ? 'text-gray-400'
-                    : 'text-black dark:text-white'
+                  dateIsToday
+                    ? 'bg-blue-500 rounded-full w-6 h-6 items-center flex'
+                    : ''
                 }
               >
-                {date.day}
-              </Text>
+                <Text
+                  className={
+                    dateIsToday
+                      ? 'text-white'
+                      : state === 'disabled'
+                        ? 'text-gray-400'
+                        : 'text-black dark:text-white'
+                  }
+                >
+                  {date.day}
+                </Text>
+              </View>
               {emojis && <Text>{emojis}</Text>}
             </View>
           </Pressable>
