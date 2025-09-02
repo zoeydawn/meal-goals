@@ -2,11 +2,12 @@ import { Pressable, Text, View } from 'react-native'
 import { DateObject } from '@/types/calendarTypes'
 import { isToday } from '@/constants/calendar'
 import { MealItem } from '@/types/FoodEmoji'
+import { DayState } from 'react-native-calendars/src/types'
 
 type DayViewProps = {
   setViewedDay: (day: DateObject) => void
   date: DateObject
-  state: any // TODO: update
+  state: DayState | undefined
   mealItems: MealItem[]
 }
 
