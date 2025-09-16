@@ -1,5 +1,6 @@
 import { Text, View } from 'react-native'
 import { DateObject, MealItemsByDate } from '@/types/calendarTypes'
+import { formatDateObject } from '@/constants/calendar'
 
 type DayCalendarProps = {
   selectedDay: DateObject
@@ -16,7 +17,7 @@ export default function DayCalendar(props: DayCalendarProps) {
   return (
     <View>
       <Text className="text-black dark:text-white">
-        {props.selectedDay.dateString}
+        {formatDateObject(props.selectedDay)}
       </Text>
 
       {emojis && <Text className="text-5xl">{emojis}</Text>}
