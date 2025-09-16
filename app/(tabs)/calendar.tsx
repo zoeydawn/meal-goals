@@ -31,7 +31,9 @@ const Page = () => {
       {calendarView === 'week' && (
         <WeekCalendar mealItems={mealItems} setViewedDay={selectDay} />
       )}
-      {calendarView === 'day' && <DayCalendar selectedDay={viewedDay} />}
+      {calendarView === 'day' && (
+        <DayCalendar mealItems={mealItems} selectedDay={viewedDay} />
+      )}
 
       <View className="flex flex-row justify-between p-4">
         {calendarView === 'day' && (
