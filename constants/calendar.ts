@@ -1,4 +1,5 @@
 import { DateObject } from '@/types/calendarTypes'
+import { MealItem } from '@/types/FoodEmoji'
 
 export const getDateObject = (date: Date = new Date()): DateObject => {
   const year = date.getFullYear()
@@ -77,4 +78,40 @@ export const formatDateObject = (
   return new Intl.DateTimeFormat('en-US', options).format(
     new Date(date.timestamp),
   )
+}
+
+function startOfWeek(date: Date): Date {
+  const d = new Date(date)
+  const day = d.getDay() // 0 = Sunday, 6 = Saturday
+  d.setHours(0, 0, 0, 0)
+  d.setDate(d.getDate() - day) // rewind to Sunday
+  return d
+}
+
+function startOfMonth(date: Date): Date {
+  const d = new Date(date.getFullYear(), date.getMonth(), 1)
+  d.setHours(0, 0, 0, 0)
+  return d
+}
+
+export function filterMealsThisWeek(mealItems: MealItem[]): MealItem[] {
+  const now = new Date()
+  const weekStart = startOfWeek(now).getTime()
+  const today = now.getTime()
+
+  return mealItems.filter((item) => {
+    const ts = item.dateAdded.timestamp
+    return ts >= weekStart && ts <= today
+  })
+}
+
+export function filterMealsThisMonth(mealItems: MealItem[]): MealItem[] {
+  const now = new Date()
+  const monthStart = startOfMonth(now).getTime()
+  const today = now.getTime()
+
+  return mealItems.filter((item) => {
+    const ts = item.dateAdded.timestamp
+    return ts >= monthStart && ts <= today
+  })
 }

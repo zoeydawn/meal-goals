@@ -4,7 +4,6 @@ import { formatDateObject } from '@/constants/calendar'
 
 type DayCalendarProps = {
   selectedDay: DateObject
-  setSelectedDay: (day: DateObject) => void
   mealItems: MealItemsByDate
 }
 

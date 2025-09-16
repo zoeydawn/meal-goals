@@ -16,7 +16,6 @@ const Page = () => {
   const [viewedDay, setViewedDay] = React.useState<DateObject>(today)
 
   const mealItems = useMealDiaryItems()
-  console.log('mealItems', mealItems)
 
   const selectDay = (day: DateObject) => {
     setCalendarView('day')
